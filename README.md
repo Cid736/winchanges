@@ -1,4 +1,4 @@
-# WinToys
+# WinChanges
 
 TUI de administración del sistema Windows en PowerShell — sin instalación, sin dependencias externas.
 
@@ -16,7 +16,7 @@ TUI de administración del sistema Windows en PowerShell — sin instalación, s
 ## Uso
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File wintoys.ps1
+powershell -ExecutionPolicy Bypass -File winchanges.ps1
 ```
 
 Para acceso completo, ejecutar como Administrador:

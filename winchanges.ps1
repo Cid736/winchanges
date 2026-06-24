@@ -1,10 +1,10 @@
 #Requires -Version 5.1
-# wintoys.ps1 -- Herramientas del sistema para Windows
-# Uso: powershell -ExecutionPolicy Bypass -File wintoys.ps1
+# winchanges.ps1 -- Herramientas del sistema para Windows
+# Uso: powershell -ExecutionPolicy Bypass -File winchanges.ps1
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'SilentlyContinue'
-$host.UI.RawUI.WindowTitle = "WinToys v1.0"
+$host.UI.RawUI.WindowTitle = "WinChanges v1.0"
 
 function W   { param($t, $c = 'White') Write-Host $t -ForegroundColor $c -NoNewline }
 function WL  { param($t = '', $c = 'White') Write-Host $t -ForegroundColor $c }
@@ -48,7 +48,7 @@ function Banner {
     Clear-Host
     WL ""
     WL "  +----------------------------------------------------------+" Cyan
-    WL "  |   W I N T O Y S  v1.0  --  Herramientas del sistema     |" Cyan
+    WL "  |   W I N C H A N G E S  v1.0  --  Herramientas del sistema     |" Cyan
     WL "  +----------------------------------------------------------+" Cyan
     if (Is-Admin) {
         WL "  [ADMIN] acceso completo" Green
