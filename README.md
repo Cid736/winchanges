@@ -1,3 +1,82 @@
+<p align="center">
+  <a href="#english">🇬🇧 English</a> &nbsp;·&nbsp; <a href="#español">🇪🇸 Español</a>
+</p>
+
+---
+
+<a name="english"></a>
+
+# WinChanges
+
+Windows system management TUI in PowerShell — no installation, no external dependencies.
+
+## Features
+
+- **7 interactive sections** in the terminal
+- Real-time system info (OS, CPU, RAM, disk, GPU, network)
+- Privacy controls: telemetry, ads, Cortana, DiagTrack service
+- Power plan management, Game Mode, SysMain, WSearch
+- Cleanup: temp folders, Windows Update cache, Prefetch, Event Log
+- UWP bloatware removal (Xbox, Bing, Skype, etc.)
+- Service management with safety warnings
+- Network tools: ping, traceroute, DNS flush, TCP/IP reset, DHCP renew
+
+## Usage
+
+```powershell
+powershell -ExecutionPolicy Bypass -File winchanges.ps1
+```
+
+For full access, run as Administrator:
+
+```
+Right-click PowerShell → Run as administrator
+```
+
+## Sections
+
+| # | Section | Requires admin |
+|---|---------|----------------|
+| 1 | System — hardware info, OS, uptime | No |
+| 2 | Privacy — telemetry, ads, activity history | Yes |
+| 3 | Performance — power plan, Game Mode, services | Yes |
+| 4 | Cleanup — temp, cache, recycle bin, Event Log | Yes |
+| 5 | Apps — remove UWP bloatware | Yes |
+| 6 | Services — enable / disable system services | Yes |
+| 7 | Network — info, ping, DNS, TCP/IP, DHCP | Partial |
+
+## Requirements
+
+- Windows 10 / 11
+- PowerShell 5.1 or higher (included in Windows)
+
+## Preview
+
+```
+  +----------------------------------------------------------+
+  |   W I N C H A N G E S  v1.0  --  System tools          |
+  +----------------------------------------------------------+
+  [ADMIN] full access
+
+  [1]  System          -- Hardware, OS, RAM, disk
+  [2]  Privacy         -- Telemetry, ads, history
+  [3]  Performance     -- Power plan, Game Mode, services
+  [4]  Cleanup         -- Temp, cache, recycle bin, Event Log
+  [5]  Apps            -- Remove UWP bloatware
+  [6]  Services        -- Enable / disable services
+  [7]  Network         -- Info, ping, DNS, TCP/IP reset
+
+  [0]  Exit
+```
+
+## License
+
+MIT
+
+---
+
+<a name="español"></a>
+
 # WinChanges
 
 TUI de administración del sistema Windows en PowerShell — sin instalación, sin dependencias externas.
@@ -5,8 +84,8 @@ TUI de administración del sistema Windows en PowerShell — sin instalación, s
 ## Características
 
 - **7 secciones** interactivas en terminal
-- Muestra información del sistema en tiempo real (SO, CPU, RAM, disco, GPU, red)
-- Control de privacidad: telemetría, anuncios, Cortana, DiagTrack
+- Información del sistema en tiempo real (SO, CPU, RAM, disco, GPU, red)
+- Control de privacidad: telemetría, anuncios, Cortana, servicio DiagTrack
 - Gestión del plan de energía, Game Mode, SysMain, WSearch
 - Limpieza de carpetas temporales, caché de Windows Update, Prefetch, Event Log
 - Eliminación de bloatware UWP (Xbox, Bing, Skype, etc.)
@@ -41,25 +120,6 @@ Clic derecho en PowerShell → Ejecutar como administrador
 
 - Windows 10 / 11
 - PowerShell 5.1 o superior (incluido en Windows)
-
-## Capturas
-
-```
-  +----------------------------------------------------------+
-  |   W I N T O Y S  v1.0  --  Herramientas del sistema     |
-  +----------------------------------------------------------+
-  [ADMIN] acceso completo
-
-  [1]  Sistema          -- Hardware, SO, RAM, disco
-  [2]  Privacidad       -- Telemetria, anuncios, historial
-  [3]  Rendimiento      -- Plan energia, Game Mode, servicios
-  [4]  Limpieza         -- Temp, cache, papelera, Event Log
-  [5]  Aplicaciones     -- Eliminar bloatware UWP
-  [6]  Servicios        -- Activar / desactivar servicios
-  [7]  Red              -- Info, ping, DNS, TCP/IP reset
-
-  [0]  Salir
-```
 
 ## Licencia
 
