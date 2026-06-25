@@ -133,7 +133,7 @@ Clic derecho en PowerShell → Ejecutar como administrador
 
 Las revisiones de seguridad automatizadas utilizan [Claude](https://claude.ai) (Anthropic AI) y se ejecutan en cada cambio significativo para detectar vulnerabilidades, patrones inseguros y riesgos en dependencias. Los hallazgos se registran en [`BUGLOG.md`](BUGLOG.md).
 
-**Última revisión:** 2026-06-25 — No se encontraron vulnerabilidades significativas.
+**Última revisión:** 2026-06-25 (rev 2) — 2 vulnerabilidades encontradas y parcheadas (1 alta, 1 media). Revisión 2: `$ErrorActionPreference` cambiado a `Stop`, confirmación explícita requerida para borrado de Event Logs.
 
 ¿Encontraste una vulnerabilidad? Abre un issue o contacta directamente.
 ## Licencia

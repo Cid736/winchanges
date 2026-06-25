@@ -3,7 +3,7 @@
 # Uso: powershell -ExecutionPolicy Bypass -File winchanges.ps1
 
 Set-StrictMode -Version Latest
-$ErrorActionPreference = 'SilentlyContinue'
+$ErrorActionPreference = 'Stop'
 $host.UI.RawUI.WindowTitle = "WinChanges v1.0"
 
 function W   { param($t, $c = 'White') Write-Host $t -ForegroundColor $c -NoNewline }
@@ -336,7 +336,7 @@ function Show-Cleanup {
         W "  [4]  Prefetch                   : " DarkGray; WL "$t4 MB" Yellow
         WL "  [5]  Vaciar Papelera de reciclaje" White
         WL "  [6]  Limpiar cache DNS" White
-        WL "  [7]  Limpiar registros de eventos" White
+        WL "  [7]  Limpiar registros de eventos  [!] IRREVERSIBLE" Red
         WL ""
         WL "  [A]  Limpiar TODO" Yellow
         WL "  [0]  Volver" DarkGray
@@ -355,14 +355,23 @@ function Show-Cleanup {
         if ($u -eq '4' -or $u -eq 'A') { Remove-Item 'C:\Windows\Prefetch\*' -Recurse -Force -EA SilentlyContinue; WL "  [OK] Prefetch limpiado." Green; $any = $true }
         if ($u -eq '5' -or $u -eq 'A') { Clear-RecycleBin -Force -EA SilentlyContinue; WL "  [OK] Papelera vaciada." Green; $any = $true }
         if ($u -eq '6' -or $u -eq 'A') { Clear-DnsClientCache -EA SilentlyContinue; WL "  [OK] Cache DNS limpiado." Green; $any = $true }
-        if ($u -eq '7' -or $u -eq 'A') {
-            Get-WinEvent -ListLog * -EA SilentlyContinue |
-                Where-Object { $_.RecordCount -gt 0 } |
-                ForEach-Object {
-                    # ClearLog lanza excepciones .NET que 2>$null no captura; usar try/catch
-                    try { [System.Diagnostics.Eventing.Reader.EventLogSession]::GlobalSession.ClearLog($_.LogName) } catch {}
-                }
-            WL "  [OK] Event Log limpiado." Green; $any = $true
+        if ($u -eq '7') {
+            WL ""
+            WL "  ADVERTENCIA: Esta accion BORRARA todos los registros de eventos del sistema." Yellow
+            WL "  Esta operacion es IRREVERSIBLE y destruye evidencia forense." Red
+            WL ""
+            W "  Escribe CONFIRMAR para continuar (o Enter para cancelar): " Cyan
+            $confirm = Read-Host
+            if ($confirm -eq 'CONFIRMAR') {
+                Get-WinEvent -ListLog * -EA SilentlyContinue |
+                    Where-Object { $_.RecordCount -gt 0 } |
+                    ForEach-Object {
+                        try { [System.Diagnostics.Eventing.Reader.EventLogSession]::GlobalSession.ClearLog($_.LogName) } catch {}
+                    }
+                WL "  [OK] Event Log limpiado." Green; $any = $true
+            } else {
+                WL "  [--] Operacion cancelada." DarkGray
+            }
         }
 
         if ($any) { Pause }
