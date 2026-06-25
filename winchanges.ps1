@@ -64,8 +64,8 @@ function Show-System {
     WL "  -- INFORMACION DEL SISTEMA --" Yellow
     WL ""
 
-    $os     = Get-CimInstance Win32_OperatingSystem
-    $cpu    = Get-CimInstance Win32_Processor | Select-Object -First 1
+    $os     = Get-CimInstance Win32_OperatingSystem -EA SilentlyContinue
+    $cpu    = Get-CimInstance Win32_Processor -EA SilentlyContinue | Select-Object -First 1
     $memGB  = [Math]::Round($os.TotalVisibleMemorySize / 1MB, 1)
     $freeGB = [Math]::Round($os.FreePhysicalMemory / 1MB, 1)
     $usedGB = [Math]::Round($memGB - $freeGB, 1)
@@ -86,7 +86,7 @@ function Show-System {
     W "  RAM          : " DarkGray
     WL $ramStr White
 
-    $disk   = Get-PSDrive C
+    $disk   = Get-PSDrive C -EA SilentlyContinue
     $dUsed  = [Math]::Round($disk.Used / 1GB, 1)
     $dFree  = [Math]::Round($disk.Free / 1GB, 1)
     $dTotal = [Math]::Round($dUsed + $dFree, 1)
@@ -105,7 +105,7 @@ function Show-System {
 
     Sep
 
-    $gpu = Get-CimInstance Win32_VideoController | Select-Object -First 1
+    $gpu = Get-CimInstance Win32_VideoController -EA SilentlyContinue | Select-Object -First 1
     if ($gpu) {
         W "  GPU          : " DarkGray
         WL $gpu.Name White
